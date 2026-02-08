@@ -1,0 +1,39 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const problems = await getCollection("problems");
+  return problems.map((p) => ({ params: { slug: p.id } }));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry("problems", slug);
+if (!entry) throw new Response("Not found", { status: 404 });
+
+const { Content } = await render(entry);
+
+const sourceUrl = entry.data.sourceUrl;
+---
+
+<SiteLayout title={entry.data.title}>
+  <article class="md">
+  <header class="article-header">
+    <h1>{entry.data.title}</h1>
+
+    {sourceUrl && (
+      <a
+        class="source-link"
+        href={sourceUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        問題ページ
+      </a>
+    )}
+    </header>
+
+    <Content />
+    </article>
+
+</SiteLayout>

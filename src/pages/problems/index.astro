@@ -1,0 +1,22 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { getCollection } from "astro:content";
+
+const problems = await getCollection("problems");
+problems.sort((a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime());
+---
+
+<SiteLayout title="Problems">
+  <section class="md">
+    <h1>Problems</h1>
+
+    <ul>
+      {problems.map((p) => (
+        <li>
+          <a href={`/problems/${p.id}`}>{p.data.title}</a>
+          {" "}（{p.data.contest} / {p.data.problem} / {p.data.difficulty}）
+        </li>
+      ))}
+    </ul>
+  </section>
+</SiteLayout>
