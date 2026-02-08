@@ -1,8 +1,8 @@
 ---
-title: "典型90問-009"
+title: "典型90問-024"
 createdAt: 2026-02-09
 contest: "typical90"
-problem: "典型90問-009"
+problem: "典型90問-024"
 difficulty: ""
 sourceUrl: "https://atcoder.jp/contests/typical90/tasks/typical90_j"
 ---
