@@ -1,3 +1,5 @@
+// DEBUG: collections cleaned
+
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
@@ -34,6 +36,6 @@ const series = defineCollection({
   }),
 });
 
-export const collections = { blog, problems, concepts, series };
+export const collections = { problems, concepts, series };
 
 
